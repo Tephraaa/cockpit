@@ -13,12 +13,14 @@ const EUROS_CENTIMES = new Intl.NumberFormat("fr-FR", {
 
 const NOMBRE = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 });
 
+const espace = (texte: string) => texte.replace(/\u202f/g, "\u00a0");
+
 export function euros(valeur: number, centimes = false) {
-  return (centimes ? EUROS_CENTIMES : EUROS).format(valeur);
+  return espace((centimes ? EUROS_CENTIMES : EUROS).format(valeur));
 }
 
 export function nombre(valeur: number) {
-  return NOMBRE.format(valeur);
+  return espace(NOMBRE.format(valeur));
 }
 
 export function aujourdhui() {

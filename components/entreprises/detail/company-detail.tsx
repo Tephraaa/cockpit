@@ -277,7 +277,13 @@ export default function CompanyDetail() {
               <DetailSection title="Chances de signer" className="shadow-none">
                 <div className="flex flex-col gap-2">
                   <div className="caption-style flex items-center justify-between">
-                    <span>Sur les {company.affaires} affaires en cours</span>
+                    <span>
+                      {company.affaires > 1
+                        ? `Sur les ${company.affaires} affaires en cours`
+                        : company.affaires === 1
+                          ? "Sur l'affaire en cours"
+                          : "Aucune affaire en cours"}
+                    </span>
                     <span>{company.chances} %</span>
                   </div>
                   <SegmentBar

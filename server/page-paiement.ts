@@ -4,7 +4,8 @@
 import type { PLCustomer, PLCustomerInvoice } from './types'
 
 const echapper = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`)
-const eur = (v: string | number) => Number(v).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })
+// L'espace fine des milliers (U+202F) disparaît presque à l'écran : on garde une espace insécable normale.
+const eur = (v: string | number) => Number(v).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' }).replace(/\u202f/g, '\u00a0')
 const date = (iso: string | null) => (iso ? new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : '')
 
 export function pagePaiement(f: PLCustomerInvoice, client: PLCustomer | undefined) {
