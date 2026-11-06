@@ -43,7 +43,7 @@ ses tâches.
 Il te faut [Node.js](https://nodejs.org) 20.9 ou plus récent.
 
 ```bash
-git clone <adresse-du-depot> cockpit
+git clone https://github.com/Tephraaa/cockpit.git cockpit
 cd cockpit
 npm install
 npm run dev
