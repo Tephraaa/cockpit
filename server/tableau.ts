@@ -1,8 +1,8 @@
 // Calcule tout ce qu'affiche la page à partir des factures, des clients et des encaissements.
 // Même calcul pour la démo et pour Pennylane : seule la source change.
 
-import { NOMS_REGIONS, regionDe } from './regions.ts'
-import type { ClientResume, Kpi, LigneFacture, PLCustomerInvoice, Serie, Source, StatutFacture, Tableau } from './types.ts'
+import { NOMS_REGIONS, regionDe } from './regions'
+import type { ClientResume, Kpi, LigneFacture, PLCustomerInvoice, Serie, Source, StatutFacture, Tableau } from './types'
 
 const JOUR = 86_400_000
 const num = (v: string | null | undefined) => (v ? Number(v) : 0)

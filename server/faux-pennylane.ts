@@ -3,8 +3,8 @@
 // Cockpit le lit avec le même client que le vrai Pennylane (pennylane.ts) : c'est la logique du premier dashboard,
 // qui parlait déjà à un faux Pennylane en local. Rien ne passe par le réseau : les appels restent dans le serveur.
 
-import type { SourceDemo } from './demo.ts'
-import type { CodeTva, NouvelleFacture } from './types.ts'
+import type { SourceDemo } from './demo'
+import type { CodeTva, NouvelleFacture } from './types'
 
 /** L'adresse que le client croit appeler. Elle n'est jamais demandée au réseau. */
 export const FAUX_PENNYLANE = 'http://faux-pennylane.local/api/external/v2'

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fabrique la carte de France en points (src/data/france.json) à partir des tracés des régions.
+"""Fabrique la carte de France en points (data/france.json) à partir des tracés des régions.
 
 Source des tracés : IGN Admin Express COG 2018 (Licence ouverte), via le fichier
 regions-version-simplifiee.geojson de https://github.com/gregoiredavid/france-geojson.
@@ -79,7 +79,7 @@ def main():
         repere = min(mes_cases, key=lambda p: (p[0] - cx) ** 2 + (p[1] - cy) ** 2)
         sortie["regions"].append({"code": r["code"], "nom": r["nom"], "repere": list(repere), "cases": len(mes_cases)})
 
-    cible = Path(__file__).resolve().parent.parent / "src" / "data" / "france.json"
+    cible = Path(__file__).resolve().parent.parent / "data" / "france.json"
     cible.write_text(json.dumps(sortie, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"{len(cases)} points, grille {colonnes} × {lignes}, écrit dans {cible}")
     for r in sortie["regions"]:

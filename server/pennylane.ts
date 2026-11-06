@@ -2,7 +2,7 @@
 // jamais vers le navigateur). Doc : https://pennylane.readme.io/reference
 // Droits du jeton : factures clients (lecture et écriture), clients (lecture), transactions (lecture).
 
-import type { NouvelleFacture, PLCustomer, PLCustomerInvoice, PLTransaction, Source } from './types.ts'
+import type { NouvelleFacture, PLCustomer, PLCustomerInvoice, PLTransaction, Source } from './types'
 
 const BASE = 'https://app.pennylane.com/api/external/v2'
 

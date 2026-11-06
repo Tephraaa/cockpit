@@ -1,7 +1,7 @@
 // La page de paiement de la démo : ce que voit le client de Maison Orée quand il ouvre son lien de paiement.
 // Rien n'est encaissé pour de vrai : le bouton marque simplement la facture comme payée dans la démo.
 
-import type { PLCustomer, PLCustomerInvoice } from './types.ts'
+import type { PLCustomer, PLCustomerInvoice } from './types'
 
 const echapper = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`)
 const eur = (v: string | number) => Number(v).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })

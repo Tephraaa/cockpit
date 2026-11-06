@@ -2,8 +2,8 @@
 // demo-donnees.ts). Mêmes formes de données que l'API Pennylane, gardées en mémoire. La démo simule aussi
 // ce que l'API ne fait pas elle-même : la page où le client paie la facture.
 
-import { CLIENTS, ENCAISSEMENTS, FACTURES } from './demo-donnees.ts'
-import type { CodeTva, NouvelleFacture, PLCustomer, PLCustomerInvoice, PLTransaction, Source } from './types.ts'
+import { CLIENTS, ENCAISSEMENTS, FACTURES } from './demo-donnees'
+import type { CodeTva, NouvelleFacture, PLCustomer, PLCustomerInvoice, PLTransaction, Source } from './types'
 
 const TAUX: Record<CodeTva, number> = { FR_200: 0.2, FR_100: 0.1, FR_55: 0.055, exempt: 0 }
 

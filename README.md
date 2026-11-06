@@ -1,68 +1,46 @@
 # Cockpit
 
-Le mission control de ta boîte : ton chiffre d'affaires, tes clients, tes prospects, ta journée et tes
-automatisations sur un seul écran, avec [Pennylane](https://www.pennylane.com) branché pour créer tes factures,
-les envoyer avec leur lien de paiement et suivre ce qui rentre. Le tout tourne sur ton ordinateur, avec une
-démo branchée sur un faux Pennylane pour l'essayer sans compte.
+Le mission control de ta boîte : **ton CRM**, **tes factures Pennylane**, ton chiffre d'affaires, ta journée,
+ton agenda et tes tâches sur un seul écran. Cockpit tourne sur ton ordinateur, avec une démo branchée sur un
+faux Pennylane pour l'essayer sans compte.
 
-![Cockpit, en thème sombre](docs/apercu.png)
+Le CRM et le style de l'appli viennent du [Sales CRM de Kargul Studio](https://github.com/kargulstudio/sales-crm)
+(licence MIT) : on l'a traduit, branché sur une vraie sauvegarde et relié à Pennylane.
+
+![Cockpit, le tableau de bord](docs/apercu.png)
 
 ## Ce qu'il affiche
 
-**Le tableau de bord**, la page d'accueil : les 4 chiffres clés, la courbe du chiffre d'affaires, tes clients
-sur une carte de France, et **tes leads** en bas : chaque prospect, d'où il vient, son étape (nouveau, contacté,
-rendez-vous, devis envoyé, gagné ou perdu), le montant espéré et la suite à donner. Les leads se remplissent avec
-`src/data/leads.ts`.
+**Le tableau de bord**, la page d'accueil : les 4 chiffres clés de Pennylane (chiffre d'affaires, encaissé,
+à encaisser, en retard), le chiffre d'affaires mois par mois, tes clients sur une carte de France, et **tes
+leads** : chaque prospect avec son segment, son étape, son responsable, ce qu'il peut te rapporter, tes chances
+de signer et son activité.
 
-**Clients** : tous tes clients, du plus gros chiffre d'affaires sur 12 mois au plus petit, avec ce qu'ils te
-doivent. Un clic sur le nom d'un client (ici, ou dans le tableau des factures) ouvre **sa fiche** : ce qu'il t'a
-rapporté, ce qu'il a déjà réglé, ce qu'il doit encore et ce qui est en retard, sa courbe sur 12 mois, ses
-coordonnées, sa part de ton chiffre d'affaires, ses factures, et « Générer une facture » déjà réglé sur lui.
+**Entreprises**, le CRM : tous tes prospects et tes clients dans un tableau à trier et à filtrer (responsable,
+étape, dernier échange), à exporter en CSV. Un clic ouvre **la fiche** : le contact, l'étape et la suite à
+donner, la santé du pipeline, l'activité, et pour un client **ses factures Pennylane**, avec « Générer une
+facture » déjà réglé sur lui.
 
-![La fiche d'un client](docs/apercu-client.png)
+![La fiche d'une entreprise](docs/apercu-fiche.png)
 
-**Agenda et Tâches** : ta semaine en cinq jours (rendez-vous clients, tournages, appels, points d'équipe), et
-toutes les tâches de la semaine à cocher. Ils se remplissent avec `src/data/agenda.ts` ; les tâches du jour sont
-celles de Mission control.
+**Affaires** : ton pipeline en colonnes, du premier contact à la signature. Glisse une carte vers une autre
+colonne pour changer son étape.
 
-**Mission control** :
-- les chiffres du jour : tâches faites, automatisations actives, temps gagné chaque semaine, et l'encaissé de Pennylane ;
-- **ta journée** : chaque tâche, son heure et l'outil qui sert à la faire ;
-- **tes outils**, avec le nombre de tâches qui passent par chacun ;
-- **tes automatisations** : quand elles tournent, leur dernier passage et leur taux de réussite.
-
-![Mission control](docs/apercu-mission.png)
-
-Ces blocs se remplissent avec le fichier `src/data/mission.ts` : c'est là que tu décris ce que fait ta
-boîte, à quel moment et avec quel outil. Seul Pennylane est vraiment branché ; le reste décrit ton organisation.
-
-**Le module Pennylane** :
-- **4 chiffres clés** : le chiffre d'affaires HT des 30 derniers jours, ce qui est arrivé sur ton compte, ce qui reste à encaisser et ce qui est en retard ;
-- **la courbe du chiffre d'affaires** sur 12 mois ou 6 mois, et tes clients par région sur une carte de France en points ;
-- **tes factures** : statut, échéance, recherche, filtre, tri, export CSV, PDF, lien de paiement, renvoi par e-mail ;
+**Factures**, le module Pennylane :
+- tes factures avec leur statut et leur échéance, à filtrer, trier et exporter, avec le PDF, le lien de paiement et le renvoi par e-mail ;
 - **« Générer une facture »** : Cockpit crée le brouillon, le finalise (Pennylane lui donne son numéro) et l'envoie à ton client par e-mail, en trois appels à l'API que tu vois défiler, puis te donne le lien de paiement ;
 - **la relance de toutes les factures en retard en un clic**, depuis la cloche ;
 - **les paiements qui arrivent** : quand tu reviens sur Cockpit, une facture réglée passe à « Payée » et l'encaissé se met à jour.
 
-![Le module Pennylane](docs/apercu-pennylane.png)
-
 ![« Générer une facture » : les trois appels à l'API, puis le lien de paiement](docs/apercu-facture.png)
 
-Il y a aussi l'objectif de l'année en bas du menu, un thème sombre et un thème clair, et une intro au
-chargement : la courbe se trace, puis les points s'allument de gauche à droite.
-
-### À propos des liens de paiement
-
-L'API de Pennylane ne fabrique pas de lien de paiement à part. Quand le paiement en ligne est activé dans
-Pennylane (Stripe connecté à Pennylane, ou le Compte Pro), la facture envoyée par e-mail et son PDF portent un
-bouton « Payer maintenant ». Le lien que Cockpit te donne est donc le PDF de la facture, redemandé à chaque fois
-parce qu'il expire au bout de 30 minutes. Dans la démo, il ouvre une page de paiement simulée.
-
-![La page de paiement simulée de la démo](docs/apercu-paiement.png)
+**Mission control** : ce que fait ta boîte, à quel moment et avec quel outil. Ta journée, tes outils, tes
+automatisations, le temps qu'elles te font gagner. **Agenda** et **Tâches** : ta semaine en cinq jours et toutes
+ses tâches.
 
 ## Démarrer
 
-Il te faut [Node.js](https://nodejs.org) 20.19 ou plus récent.
+Il te faut [Node.js](https://nodejs.org) 20.9 ou plus récent.
 
 ```bash
 git clone <adresse-du-depot> cockpit
@@ -72,9 +50,9 @@ npm run dev
 ```
 
 Ouvre http://localhost:5180 : tu es sur la démo de Maison Orée, une agence de communication fictive à Lyon,
-avec ses 12 clients et ses factures. Elle est branchée dès l'ouverture sur un faux Pennylane
-(`server/faux-pennylane.ts`) : il répond comme la vraie API, et Cockpit le lit avec le même code que ton vrai
-compte. Les montants sont calés sur la date du jour, et le menu du compte (en bas à gauche) remet la démo à zéro.
+avec son équipe, ses 12 clients, ses 8 prospects et ses factures. Elle est branchée dès l'ouverture sur un faux
+Pennylane (`server/faux-pennylane.ts`) : il répond comme la vraie API, et Cockpit le lit avec le même code que
+ton vrai compte. « Réinitialiser la démo », en bas du menu, la remet à zéro.
 
 ## Brancher ton compte Pennylane
 
@@ -83,12 +61,24 @@ compte. Les montants sont calés sur la date du jour, et le menu du compte (en b
 2. Coche au minimum : **factures clients** en lecture et écriture, **clients** et **transactions** en lecture.
 3. Copie le fichier `.env.example` en `.env`, colle ton jeton après `PENNYLANE_API_TOKEN=`, puis relance `npm run dev`.
 
-Le badge en haut du menu passe de « Démo » à « Pennylane ».
+Le badge à côté du titre passe de « Démo » à « Pennylane », et chaque client Pennylane entre dans ton CRM, à
+l'étape « Client ».
 
-**Le jeton reste sur ton ordinateur.** Il vit dans `.env` (ignoré par git) et n'est lu que par le petit
-serveur local de Cockpit : il n'est jamais envoyé au navigateur. Le serveur n'écoute que ton ordinateur.
-Ne mets pas Cockpit en ligne sans ajouter une vraie connexion : n'importe qui pourrait lire tes chiffres
-et créer des factures.
+**Le jeton reste sur ton ordinateur.** Il vit dans `.env` (ignoré par git) et n'est lu que par le serveur local
+de Cockpit : il n'est jamais envoyé au navigateur. Ne mets pas Cockpit en ligne sans ajouter une vraie
+connexion : n'importe qui pourrait lire tes chiffres et créer des factures.
+
+## Tes données
+
+| Quoi | Où |
+|---|---|
+| Ton CRM (entreprises, équipe, étapes) | `.cockpit/crm.json`, créé au premier lancement et ignoré par git. La démo a le sien : `.cockpit/crm-demo.json` |
+| Ta journée, tes outils, tes automatisations | `data/mission.ts` |
+| Ton agenda et les tâches de la semaine | `data/agenda.ts` |
+| Tes factures, tes clients, tes encaissements | Pennylane, lus par l'API |
+
+Le plus simple pour tout remplir : ouvre Claude Code dans le dossier et demande-lui. Par exemple : « importe mes
+prospects depuis ce fichier CSV dans le CRM », ou « remplis data/mission.ts avec ma journée type ».
 
 ## Comment les chiffres sont calculés
 
@@ -98,24 +88,24 @@ et créer des factures.
 | Encaissé | Entrées d'argent rattachées à un client sur ton compte bancaire, ces 30 derniers jours |
 | À encaisser | Reste à payer TTC des factures envoyées et pas encore réglées |
 | En retard | La part de ces factures dont l'échéance est passée |
-| Courbe | Total HT par tranches de 30 jours (12 mois) ou de 14 jours (6 mois) |
+| Barres du chiffre d'affaires | Total HT par tranches de 30 jours (12 mois) ou de 14 jours (6 mois) |
 | Clients par région | Total HT des 12 derniers mois, d'après l'adresse de facturation de chaque client |
 | Objectif de l'année | Total HT depuis le 1ᵉʳ janvier. Règle-le avec `COCKPIT_OBJECTIF_ANNUEL` ; sans réglage, Cockpit vise +10 % sur tes 12 derniers mois |
-| Temps gagné | Pour chaque automatisation de `src/data/mission.ts` : minutes gagnées à chaque passage × passages par semaine |
+| Pipeline pondéré | Pour chaque affaire en cours : montant espéré × chances de signer |
+| Temps gagné | Pour chaque automatisation de `data/mission.ts` : minutes gagnées à chaque passage × passages par semaine |
 
 ## Sous le capot
 
-- **React 19, TypeScript et Vite**, du CSS sans bibliothèque d'interface. Les points sont dessinés sur des canvas.
-- **`server/`** : l'API locale, branchée dans le serveur de Vite. `pennylane.ts` parle à la [Company API v2](https://pennylane.readme.io/reference). Sans jeton, il parle à `faux-pennylane.ts`, qui répond comme elle (mêmes chemins, mêmes champs) avec les données de `demo.ts`. `tableau.ts` fait tous les calculs, les mêmes pour les deux.
-- **Sur ordinateur, tout tient dans la fenêtre** : les styles sont écrits en pixels d'une maquette de 1280 × 820, puis convertis en rem, et la taille de base suit la fenêtre. Sur téléphone, la page défile.
-- `npm run build` vérifie les types et construit la page. `npm start` sert la version construite, avec l'API, sur le même port.
+- **Next.js 16, React 19, TypeScript et Tailwind CSS 4**, avec les composants Radix et le style du Sales CRM de Kargul Studio.
+- **`server/`** : l'API locale, servie par `app/api/[...chemin]/route.ts`. `pennylane.ts` parle à la [Company API v2](https://pennylane.readme.io/reference). Sans jeton, il parle à `faux-pennylane.ts`, qui répond comme elle avec les données de `demo.ts`. `tableau.ts` fait les calculs, `crm.ts` garde le CRM.
+- Les requêtes qui modifient quelque chose refusent les appels venus d'un autre site et ceux qui ne sont pas en JSON.
+- `npm run check` vérifie les types. `npm run build` puis `npm start` servent la version construite sur le même port.
 
 ## Crédits
 
-- Polices : [Geist et Geist Mono](https://vercel.com/font) (Vercel) et [Departure Mono](https://departuremono.com) (Helena Zhang), sous licence SIL Open Font License.
-- Icônes : [Lucide](https://lucide.dev) (licence ISC).
+- Le CRM, la structure de l'interface et ses icônes : [Sales CRM](https://github.com/kargulstudio/sales-crm) de Kargul Studio, sous licence MIT.
+- Police : [Geist](https://vercel.com/font) (Vercel), sous licence SIL Open Font License. Icônes complémentaires : [Lucide](https://lucide.dev) (licence ISC).
 - Tracés des régions : IGN Admin Express (Licence ouverte), simplifiés par [france-geojson](https://github.com/gregoiredavid/france-geojson). La carte en points se régénère avec `scripts/carte-france.py`.
-- Le style visuel s'inspire du dashboard Overseer d'[Adeebrq](https://github.com/Adeebrq). Aucun code n'en est repris.
 
 Cockpit n'est pas un produit de Pennylane : c'est un projet libre qui utilise son API publique.
 
